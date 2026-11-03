@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>ZENOVA AI</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #101827;
+    color: white;
+}
+
+header {
+    padding: 20px;
+    background: #080f1c;
+    text-align: center;
+}
+
+header h1 { color: #38bdf8; }
+
+main {
+    max-width: 650px;
+    margin: auto;
+    padding: 20px;
+}
+
+#chat {
+    height: 60vh;
+    overflow-y: auto;
+    background: #1b293b;
+    border-radius: 14px;
+    padding: 15px;
+}
+
+.message {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    background: #263950;
+    overflow-wrap: anywhere;
+}
+
+form {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border: 0;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+button {
+    padding: 14px;
+    border: 0;
+    border-radius: 9px;
+    background: #0284c7;
+    color: white;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>✦ ZENOVA AI</h1>
+    <p>Your Personal AI Assistant</p>
+</header>
+
+<main>
+    <div id="chat" aria-live="polite">
+        <div class="message">
+            <b>ZENOVA:</b> Hello! Welcome to your new AI assistant.
+        </div>
+    </div>
+
+    <form id="chatForm">
+        <input id="message" placeholder="Ask me anything..." required>
+        <button type="submit">Send</button>
+    </form>
+</main>
+
+<script>
+document.getElementById("chatForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const input = document.getElementById("message");
+    const chat = document.getElementById("chat");
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    const message = document.createElement("div");
+    message.className = "message";
+    message.textContent = "You: " + text;
+
+    chat.appendChild(message);
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+});
+</script>
+
+</body>
+</html>
