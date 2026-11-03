@@ -71,10 +71,14 @@ if (req.method === "OPTIONS") {
         const data = await response.json();
 
         if (!response.ok) {
-            return res.status(502).json({
-                error: "AI service request failed"
-            });
-        }
+    console.error("Groq API error:", response.status, data);
+
+    return res.status(502).json({
+        error: "Groq error",
+        status: response.status,
+        details: data.error?.message || "Unknown provider error"
+    });
+}
 
         return res.status(200).json({
             reply: data.choices?.[0]?.message?.content ||
