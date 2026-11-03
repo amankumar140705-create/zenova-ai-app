@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#101827"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#101827">
 <title>ZENOVA AI</title>
 
 <style>
@@ -82,7 +83,7 @@ button {
 <main>
     <div id="chat" aria-live="polite">
         <div class="message">
-            <b>ZENOVA:</b> Hello! Welcome to your new AI assistant.
+            <b>ZENOVA:</b> Hello! Welcome to your AI assistant.
         </div>
     </div>
 
@@ -92,7 +93,6 @@ button {
     </form>
 </main>
 
-<script>
 <script>
 let history = [];
 
@@ -152,24 +152,20 @@ form.addEventListener("submit", async function(event) {
 
     } catch (error) {
         console.error(error);
-        loading.textContent =
-            "ZENOVA: Connection failed. Please try again.";
-
+        loading.textContent = "ZENOVA: " + error.message;
         history.pop();
     }
 
     chat.scrollTop = chat.scrollHeight;
 });
-</script>
-</script>
-<script>
+
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("./sw.js")
-            .then(() => console.log("ZENOVA AI is ready"))
             .catch(error => console.log("Service Worker error:", error));
     });
 }
 </script>
+
 </body>
 </html>
